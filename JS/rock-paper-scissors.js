@@ -1,3 +1,6 @@
+
+// Game input
+
 function computerPlay() {                           //Get random guess from computer
     let number = Math.floor(Math.random() * 3);
 
@@ -34,6 +37,8 @@ const playerPlay = () =>{                       //Get guess from player and chec
 }
 
 
+// Game logic
+
 const playRound = (playerSelection, computerSelection) => {         // Game logic for playing 1 round.
 
     
@@ -68,15 +73,17 @@ const playRound = (playerSelection, computerSelection) => {         // Game logi
 
 }
 
+let playerPoints = 0;                                       // Set variables for keeping score
+let computerPoints = 0;
 
 
-let game = () => {
+let game = () => {                                          // Play game 
 
-    let winner;
+    let winner;                                             // Set variable for winner
 
-    loopGame();
+    loopGame();                                             // Loops the game for 5 rounds
 
-    if(playerPoints === computerPoints){
+    if(playerPoints === computerPoints){                    // Determine winner.
         winner = 'no';
         console.log(`End game, the game ended in a draw.`)
     }else if(playerPoints > computerPoints){
@@ -88,20 +95,20 @@ let game = () => {
     }
 }
 
-const loopGame = () =>{
+const loopGame = () =>{                                     // Loop for 5 rounds 
 
-    for(let i = 0; i < 5; i++){
+    for(let i = 0; i < 5; i++){                             // Loop 5 times
 
-        let playerSelection = playerPlay();
+        let playerSelection = playerPlay();                 // Assign the guess functions to variables
         let computerSelection = computerPlay();
       
-        playRound(playerSelection, computerSelection);
+        playRound(playerSelection, computerSelection);      // Play 1 round
         
-        console.log(`You threw: ${playerSelection}`);
-        console.log(`The computer threw: ${computerSelection}`);
+        console.log(`You threw: ${playerSelection}`);               // Log the player guess
+        console.log(`The computer threw: ${computerSelection}`);    // Log the computer guess
         
 
-        if(playRound(playerSelection, computerSelection) === 'You win!'){
+        if(playRound(playerSelection, computerSelection) === 'You win!'){          // Add score to winner of the round and log the result
             playerPoints++
             console.log(`You win! ${playerSelection} beats ${computerSelection} score: ${playerPoints} - ${computerPoints}`);
             
@@ -113,19 +120,11 @@ const loopGame = () =>{
             console.log(`It's a tie score: ${playerPoints} - ${computerPoints}`)
         }
 
-
-       if(playerSelection === 'invalid'){
-        i--;}
-    }
-
-    
-
+       if(playerSelection === 'invalid'){                   //Makes sure when given invalid input, game round doesn't count
+            i--;
+        }
+    }   
 }
 
-let playerPoints = 0;
-let computerPoints = 0;
-
-
-
-game();
+game();                                                     // Call game function
 
