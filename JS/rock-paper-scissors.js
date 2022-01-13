@@ -1,26 +1,25 @@
-
-const computerPlay = () =>{
+function computerPlay() {                           //Get random guess from computer
     let number = Math.floor(Math.random() * 3);
 
-    switch(number){
+    switch (number) {
         case 0:
-        return 'rock';
-        break;
+            return 'rock';
+            break;
         case 1:
-        return 'paper';
-        break;
+            return 'paper';
+            break;
         case 2:
-        return 'scissors';
-        break;
+            return 'scissors';
+            break;
         default:
-        return 'Something went wrong';
-        break;
+            return 'Something went wrong';
+            break;
     }
 
 } 
 
 
-const playerPlay = () =>{
+const playerPlay = () =>{                       //Get guess from player and check the input if valid or not
     let guess = prompt('Enter your guess: rock, paper or scissors');
 
     guess = guess.toLowerCase();
@@ -28,13 +27,14 @@ const playerPlay = () =>{
     if(guess === 'rock' || guess === 'paper' || guess === 'scissors'){
         return guess;
     }else{
-        alert('Please enter a valid guess.')
+        alert('Please enter a valid guess.');
+        return 'invalid';
     }
     
 }
 
 
-const playRound = (playerSelection, computerSelection) => {
+const playRound = (playerSelection, computerSelection) => {         // Game logic for playing 1 round.
 
     
     if(playerSelection === computerSelection){
@@ -72,36 +72,14 @@ const playRound = (playerSelection, computerSelection) => {
 
 let game = () => {
 
-    let playerPoints = 0;
-    let computerPoint = 0;
     let winner;
 
-    for(let i = 0; i < 5; i++){
-        let playerSelection = playerPlay();
-        let computerSelection = computerPlay();
+    loopGame();
 
-        playRound(playerSelection, computerSelection);
-        console.log(`You threw: ${playerSelection}`);
-        console.log(`The computer threw: ${computerSelection}`);
-        
-
-        if(playRound(playerSelection, computerSelection) === 'You win!'){
-            playerPoints++
-            console.log(`You win! ${playerSelection} beats ${computerSelection} score: ${playerPoints} - ${computerPoint}`);
-            
-        }else if(playRound(playerSelection, computerSelection) === 'Computer wins!'){
-            computerPoint++
-            console.log(`Computer wins! ${computerSelection} beats ${playerSelection} score: ${playerPoints} - ${computerPoint}`);
-            
-        }else{
-            console.log(`It's a tie score: ${playerPoints} - ${computerPoint}`)
-        }
-    }
-
-    if(playerPoints === computerPoint){
+    if(playerPoints === computerPoints){
         winner = 'no';
         console.log(`End game, the game ended in a draw.`)
-    }else if(playerPoints > computerPoint){
+    }else if(playerPoints > computerPoints){
         winner = 'player'
         console.log(`End game, ${winner} wins the game!`)
     }else{
@@ -110,4 +88,44 @@ let game = () => {
     }
 }
 
+const loopGame = () =>{
+
+    for(let i = 0; i < 5; i++){
+
+        let playerSelection = playerPlay();
+        let computerSelection = computerPlay();
+      
+        playRound(playerSelection, computerSelection);
+        
+        console.log(`You threw: ${playerSelection}`);
+        console.log(`The computer threw: ${computerSelection}`);
+        
+
+        if(playRound(playerSelection, computerSelection) === 'You win!'){
+            playerPoints++
+            console.log(`You win! ${playerSelection} beats ${computerSelection} score: ${playerPoints} - ${computerPoints}`);
+            
+        }else if(playRound(playerSelection, computerSelection) === 'Computer wins!'){
+            computerPoints++
+            console.log(`Computer wins! ${computerSelection} beats ${playerSelection} score: ${playerPoints} - ${computerPoints}`);
+            
+        }else{
+            console.log(`It's a tie score: ${playerPoints} - ${computerPoints}`)
+        }
+
+
+       if(playerSelection === 'invalid'){
+        i--;}
+    }
+
+    
+
+}
+
+let playerPoints = 0;
+let computerPoints = 0;
+
+
+
 game();
+
