@@ -78,11 +78,14 @@ let computerPoints = 0;
 
 
 let game = () => {                                          // Play game 
-
-    let winner;                                             // Set variable for winner
-
+                            
     loopGame();                                             // Loops the game for 5 rounds
 
+    determineAndPrintWinner();
+}
+
+const determineAndPrintWinner = () =>{
+    let winner;
     if(playerPoints === computerPoints){                    // Determine winner.
         winner = 'no';
         console.log(`End game, the game ended in a draw.`)
@@ -94,37 +97,40 @@ let game = () => {                                          // Play game
         console.log(`End game, ${winner} wins the game!`)
     }
 }
-
-const loopGame = () =>{                                     // Loop for 5 rounds 
+const loopGame = () =>{                                    
 
     for(let i = 0; i < 5; i++){                             // Loop 5 times
 
-        let playerSelection = playerPlay();                 // Assign the guess functions to variables
+        let playerSelection = playerPlay();                 
         let computerSelection = computerPlay();
       
         playRound(playerSelection, computerSelection);      // Play 1 round
         
-        console.log(`You threw: ${playerSelection}`);               // Log the player guess
-        console.log(`The computer threw: ${computerSelection}`);    // Log the computer guess
+        console.log(`You threw: ${playerSelection}`);               
+        console.log(`The computer threw: ${computerSelection}`);    
         
-
-        if(playRound(playerSelection, computerSelection) === 'You win!'){          // Add score to winner of the round and log the result
-            playerPoints++
-            console.log(`You win! ${playerSelection} beats ${computerSelection} score: ${playerPoints} - ${computerPoints}`);
-            
-        }else if(playRound(playerSelection, computerSelection) === 'Computer wins!'){
-            computerPoints++
-            console.log(`Computer wins! ${computerSelection} beats ${playerSelection} score: ${playerPoints} - ${computerPoints}`);
-            
-        }else{
-            console.log(`It's a tie score: ${playerPoints} - ${computerPoints}`)
-        }
-
-       if(playerSelection === 'invalid'){                   //Makes sure when given invalid input, game round doesn't count
-            i--;
-        }
+        getAndPrintPoints(playerSelection, computerSelection);
+        
     }   
 }
 
-game();                                                     // Call game function
+const getAndPrintPoints = (playerSelection, computerSelection) =>{
+
+    if(playRound(playerSelection, computerSelection) === 'You win!'){         
+        playerPoints++
+        console.log(`You win! ${playerSelection} beats ${computerSelection}, score: ${playerPoints} - ${computerPoints}`);
+        
+    }else if(playRound(playerSelection, computerSelection) === 'Computer wins!'){
+        computerPoints++
+        console.log(`Computer wins! ${computerSelection} beats ${playerSelection}, score: ${playerPoints} - ${computerPoints}`);
+        
+    }else if(playRound(playerSelection, computerSelection) === 'Tie'){
+        console.log(`It's a tie, score: ${playerPoints} - ${computerPoints}`)
+    }else{                                         
+      
+        console.log(`Invalid input, score: ${playerPoints} - ${computerPoints}`)
+    }
+}
+
+game();                                                     
 
