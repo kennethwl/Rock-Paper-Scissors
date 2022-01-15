@@ -5,37 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-   <link rel="stylesheet" href="./CSS/rock-paper-scissors.css">
+    <link rel="stylesheet" href="./css/rps.css">
+   
 <body>
 
     <h1>Rock Paper Scissors</h1>
 
+   
+    <div class="scoreboard">
+
+      
+        <div class="players">
+            <div id="player">PLAYER </div>
+            <div id="computer">COMPUTER </div>
+        </div>
+
+        <div class="score">
+            <div id="player-score">0</div>
+            <div id="computer-score">0</div>
+        </div>
+
+       
+    </div>
+
     <div class="game-moves">
-        <div id="player-output">
-            <p>Player throws: </p>
-            <div id="player-throw">placeholder</div>
-        </div>
+        <div id="player-move"></div>
+        <div id="computer-move"></div>
+        
+    </div>
+    <div class="round-result"></div>
 
-        <div id="computer-output">
-            <p>Computer throws:</p>
-            <div id="computer-throw">placeholder</div>
-        </div>
+    <h2>Choose your weapon</h2>
+
+    <div class="buttons">
+        <button id="rock"><img src="./img/rock.png" alt=""></button>
+        <button id="paper"><img src="./img/paper.png" alt=""></button>
+        <button id="scissors"><img src="./img/scissors.png" alt=""></button>
     </div>
 
-    <div class="score">
-        <p>Score: </p>
-        <div id="current-score">placeholder</div>
-    </div>
+    <div class="display-winner"></div>
 
-    <div id="current-round">placeholder round info</div>
-
-    <div class="winner">
-        <p>Winner: </p>
-        <div id="winner">placeholder</div>
-    </div>
-
-
-
+    <button class="page-reload">TRY AGAIN</button>
+    
     <script src="./JS/rock-paper-scissors.js"></script>
 
 </body>
