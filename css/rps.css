@@ -1,0 +1,104 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(fonts/CursedTimerUlil-Aznm.ttf);
+}
+@font-face {
+    font-family: cartoon;
+    src: url(fonts/WickedMouse-aGoK.ttf);
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    font-family: 'cartoon';
+  
+}
+
+h1{
+    font-size: 50px;
+}
+
+h2{
+    font-size: 40px;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+button{
+    background-color: white;
+    border: none;
+  
+}
+
+button img{
+    width: 250px;
+}
+
+button :hover, .page-reload:hover{
+    cursor: pointer;
+}
+
+.scoreboard{
+    display: flex;
+    gap: 50px;
+    width: 350px;
+    background-color: rgb(29, 27, 27);
+    color: white;
+    padding: 40px;
+    border-radius: 1rem;
+    justify-content: space-between;
+}
+
+.players{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    font-size: 45px;
+    color: yellowgreen;
+    font-family: 'myFirstFont';
+    justify-content: space-between;
+}
+
+.score{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: red;
+    font-family: 'myFirstFont';
+    font-size: 50px;
+    justify-content: space-between;
+    align-items: flex-end;
+    
+}
+
+.game-moves{
+    display: flex;
+    gap: 40px;
+    font-size: 26px;
+    font: red;
+}
+
+.page-reload{
+    font-family: 'cartoon';
+    font-size: 24px;
+    border-style: solid;
+    border-width: 7px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+  
+}
+
+.display-winner{
+   font: red;
+   font-size: 50px;
+
+
+}
