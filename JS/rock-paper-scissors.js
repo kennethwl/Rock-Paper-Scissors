@@ -18,26 +18,13 @@ function computerPlay() {                           //Get random guess from comp
             return 'Something went wrong';
             break;
     }
+    
 
 } 
 
+let guessPlayer = '';
 
-const playerPlay = () =>{                       //Get guess from player and check the input if valid or not
-    let guess = prompt('Enter your guess: rock, paper or scissors');
-
-    guess = guess.toLowerCase();
-
-    if(guess === 'rock' || guess === 'paper' || guess === 'scissors'){
-        return guess;
-    }else{
-        alert('Please enter a valid guess.');
-        return 'invalid';
-    }
-    
-}
-
-
-// Game logic
+// Game logic'
 
 const playRound = (playerSelection, computerSelection) => {         // Game logic for playing 1 round.
 
@@ -73,64 +60,81 @@ const playRound = (playerSelection, computerSelection) => {         // Game logi
 
 }
 
+
 let playerPoints = 0;                                       // Set variables for keeping score
 let computerPoints = 0;
 
+let game = () => {      
+    
+    if(playerPoints < 5 && computerPoints < 5){
+    let playerSelection = guessPlayer;                 
+    let computerSelection = computerPlay();
 
-let game = () => {                                          // Play game 
-                            
-    loopGame();                                             // Loops the game for 5 rounds
-
-    determineAndPrintWinner();
-}
-
-const determineAndPrintWinner = () =>{
-    let winner;
-    if(playerPoints === computerPoints){                    // Determine winner.
-        winner = 'no';
-        console.log(`End game, the game ended in a draw.`)
-    }else if(playerPoints > computerPoints){
-        winner = 'player'
-        console.log(`End game, ${winner} wins the game!`)
-    }else{
-        winner = 'computer'
-        console.log(`End game, ${winner} wins the game!`)
+    playRound(playerSelection, computerSelection);      
+    getPoints(playerSelection, computerSelection); 
+    updateMoves(playerSelection, computerSelection);
+    updateScoreboard();
     }
-}
-const loopGame = () =>{                                    
 
-    for(let i = 0; i < 5; i++){                             // Loop 5 times
-
-        let playerSelection = playerPlay();                 
-        let computerSelection = computerPlay();
-      
-        playRound(playerSelection, computerSelection);      // Play 1 round
-        
-        console.log(`You threw: ${playerSelection}`);               
-        console.log(`The computer threw: ${computerSelection}`);    
-        
-        getAndPrintPoints(playerSelection, computerSelection);
-        
-    }   
+    if(playerPoints === 5 || computerPoints === 5){
+        printWinner();
+    }
+    
 }
 
-const getAndPrintPoints = (playerSelection, computerSelection) =>{
+
+// Event handlers
+
+const buttons = document.querySelectorAll('button');
+const pageReload = document.querySelector('.page-reload')
+
+
+buttons.forEach(button => {
+    button.addEventListener('click', () =>{
+        guessPlayer = button.id
+        game();
+        
+    })
+})
+
+pageReload.addEventListener('click', () =>{
+    document. location. reload()
+});
+
+// Helper functions
+
+const updateScoreboard = () =>{
+    const playerScore = document.querySelector('#player-score')
+    const computerScore = document.querySelector('#computer-score')
+        computerScore.textContent = computerPoints;
+        playerScore.textContent = playerPoints
+        
+}
+
+const updateMoves = (playerSelection, computerSelection) =>{
+    const computerMove = document.querySelector('#computer-move')
+    const playerMove = document.querySelector('#player-move')
+
+        playerMove.textContent = `Player throws: ${playerSelection}`
+        computerMove.textContent = `Computer throws: ${computerSelection}`
+}
+
+const getPoints = (playerSelection, computerSelection) =>{
 
     if(playRound(playerSelection, computerSelection) === 'You win!'){         
-        playerPoints++
-        console.log(`You win! ${playerSelection} beats ${computerSelection}, score: ${playerPoints} - ${computerPoints}`);
-        
+        playerPoints++ 
     }else if(playRound(playerSelection, computerSelection) === 'Computer wins!'){
-        computerPoints++
-        console.log(`Computer wins! ${computerSelection} beats ${playerSelection}, score: ${playerPoints} - ${computerPoints}`);
-        
-    }else if(playRound(playerSelection, computerSelection) === 'Tie'){
-        console.log(`It's a tie, score: ${playerPoints} - ${computerPoints}`)
-    }else{                                         
-      
-        console.log(`Invalid input, score: ${playerPoints} - ${computerPoints}`)
+        computerPoints++    
     }
 }
 
-game();                                                     
-
+const printWinner = () =>{
+    const winner = document.querySelector('.display-winner');
+    winner.style.color = 'red'
+    if(playerPoints > computerPoints){
+        winner.textContent = 'Player wins!'
+       
+    }else{
+       winner.textContent = 'Computer wins!'
+    }
+}
