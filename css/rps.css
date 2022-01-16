@@ -10,17 +10,20 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
     font-family: 'cartoon';
+    box-sizing: border-box;
   
 }
 
 h1{
-    font-size: 50px;
+    font-size: 36px;
+    margin: 0px;
 }
 
 h2{
-    font-size: 40px;
+    font-size: 20px;
+    margin: 0px;
 }
 
 .buttons{
@@ -37,7 +40,7 @@ button{
 }
 
 button img{
-    width: 250px;
+    width: 150px;
 }
 
 button :hover, .page-reload:hover{
@@ -47,7 +50,7 @@ button :hover, .page-reload:hover{
 .scoreboard{
     display: flex;
     gap: 50px;
-    width: 350px;
+    width: 250px;
     background-color: rgb(29, 27, 27);
     color: white;
     padding: 40px;
@@ -59,7 +62,7 @@ button :hover, .page-reload:hover{
     display: flex;
     flex-direction: column;
     gap: 40px;
-    font-size: 45px;
+    font-size: 30px;
     color: yellowgreen;
     font-family: 'myFirstFont';
     justify-content: space-between;
@@ -71,7 +74,7 @@ button :hover, .page-reload:hover{
     gap: 40px;
     color: red;
     font-family: 'myFirstFont';
-    font-size: 50px;
+    font-size: 35px;
     justify-content: space-between;
     align-items: flex-end;
     
@@ -80,25 +83,24 @@ button :hover, .page-reload:hover{
 .game-moves{
     display: flex;
     gap: 40px;
-    font-size: 26px;
+    font-size: 18px;
     font: red;
 }
 
 .page-reload{
     font-family: 'cartoon';
-    font-size: 24px;
+    font-size: 18px;
     border-style: solid;
-    border-width: 7px;
+    border-width: 5px;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     padding: 10px;
   
 }
 
 .display-winner{
-   font: red;
-   font-size: 50px;
+   font-size: 20px;
 
 
 }
