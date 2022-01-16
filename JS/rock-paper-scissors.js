@@ -1,6 +1,5 @@
 
 // Game input
-
 function computerPlay() {                           //Get random guess from computer
     let number = Math.floor(Math.random() * 3);
 
@@ -17,9 +16,7 @@ function computerPlay() {                           //Get random guess from comp
         default:
             return 'Something went wrong';
             break;
-    }
-    
-
+    };  
 } 
 
 let guessPlayer = '';
@@ -27,8 +24,6 @@ let guessPlayer = '';
 // Game logic'
 
 const playRound = (playerSelection, computerSelection) => {         // Game logic for playing 1 round.
-
-    
     if(playerSelection === computerSelection){
         return 'Tie';
     } 
@@ -55,9 +50,7 @@ const playRound = (playerSelection, computerSelection) => {         // Game logi
         }
         
        return'You win!';
-    }
-  
-
+    };
 }
 
 
@@ -74,67 +67,57 @@ let game = () => {
     getPoints(playerSelection, computerSelection); 
     updateMoves(playerSelection, computerSelection);
     updateScoreboard();
-    }
-
+    };
     if(playerPoints === 5 || computerPoints === 5){
         printWinner();
-    }
-    
+    };
 }
-
 
 // Event handlers
 
 const buttons = document.querySelectorAll('button');
 const pageReload = document.querySelector('.page-reload')
-
-
 buttons.forEach(button => {
     button.addEventListener('click', () =>{
-        guessPlayer = button.id
-        game();
-        
-    })
+        guessPlayer = button.id;
+        game();   
+    });
 })
-
 pageReload.addEventListener('click', () =>{
-    document. location. reload()
+    document. location. reload();
 });
 
 // Helper functions
 
 const updateScoreboard = () =>{
-    const playerScore = document.querySelector('#player-score')
-    const computerScore = document.querySelector('#computer-score')
+    const playerScore = document.querySelector('#player-score');
+    const computerScore = document.querySelector('#computer-score');
+
         computerScore.textContent = computerPoints;
-        playerScore.textContent = playerPoints
+        playerScore.textContent = playerPoints;
         
 }
-
 const updateMoves = (playerSelection, computerSelection) =>{
-    const computerMove = document.querySelector('#computer-move')
-    const playerMove = document.querySelector('#player-move')
+    const computerMove = document.querySelector('#computer-move');
+    const playerMove = document.querySelector('#player-move');
 
-        playerMove.textContent = `Player throws: ${playerSelection}`
-        computerMove.textContent = `Computer throws: ${computerSelection}`
+        playerMove.textContent = `Player throws: ${playerSelection}`;
+        computerMove.textContent = `Computer throws: ${computerSelection}`;
 }
-
 const getPoints = (playerSelection, computerSelection) =>{
-
     if(playRound(playerSelection, computerSelection) === 'You win!'){         
-        playerPoints++ 
+        playerPoints++ ;
     }else if(playRound(playerSelection, computerSelection) === 'Computer wins!'){
-        computerPoints++    
-    }
+        computerPoints++; 
+    };
 }
-
 const printWinner = () =>{
     const winner = document.querySelector('.display-winner');
-    winner.style.color = 'red'
+    winner.style.color = 'red';
     if(playerPoints > computerPoints){
-        winner.textContent = 'Player wins!'
+        winner.textContent = 'Player wins!';
        
     }else{
-       winner.textContent = 'Computer wins!'
-    }
+       winner.textContent = 'Computer wins!';
+    };
 }
